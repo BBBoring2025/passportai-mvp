@@ -35,6 +35,7 @@ def _upload_supabase(file_bytes: bytes, storage_key: str, mime_type: str) -> str
 
     url = f"{settings.supabase_url}/storage/v1/object/{BUCKET_NAME}/{storage_key}"
     headers = {
+        "apikey": settings.supabase_service_key,
         "Authorization": f"Bearer {settings.supabase_service_key}",
         "Content-Type": mime_type,
         "x-upsert": "true",
@@ -63,7 +64,10 @@ def _download_supabase(storage_path: str) -> bytes:
     import httpx
 
     url = f"{settings.supabase_url}/storage/v1/object/{storage_path}"
-    headers = {"Authorization": f"Bearer {settings.supabase_service_key}"}
+    headers = {
+        "apikey": settings.supabase_service_key,
+        "Authorization": f"Bearer {settings.supabase_service_key}",
+    }
     response = httpx.get(url, headers=headers)
     response.raise_for_status()
     return response.content

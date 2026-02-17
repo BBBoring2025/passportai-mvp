@@ -37,18 +37,18 @@ def run_migrations() -> bool:
 
 
 def run_seed() -> bool:
-    """Run the demo seed script."""
+    """Run the production seed (seeds into real DATABASE_URL)."""
     print("=" * 50)
-    print("  Seeding demo data …")
+    print("  Seeding demo data (production) …")
     print("=" * 50)
     result = subprocess.run(
-        [sys.executable, "-m", "scripts.seed_demo"],
+        [sys.executable, "-m", "scripts.seed_production"],
         cwd=str(BACKEND_DIR),
     )
     if result.returncode != 0:
         print("ERROR: Seed script failed!")
         return False
-    print("Demo seed completed.\n")
+    print("Production seed completed.\n")
     return True
 
 

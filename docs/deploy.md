@@ -24,6 +24,11 @@
      Format: `postgresql://postgres.[ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres`
    - **Supabase URL** (Settings → API → Project URL)
    - **Service Role Key** (Settings → API → service_role key)
+4. **Create Storage Bucket:**
+   - Go to Storage in the Supabase Dashboard
+   - Click "New Bucket"
+   - Name: `documents`, Public: **false**
+   - This bucket stores all uploaded PDFs
 
 > **Important:** Use the "Transaction" connection pooler (port 6543) for the DATABASE_URL.
 
@@ -49,18 +54,22 @@
 | `SUPABASE_URL` | `https://[ref].supabase.co` |
 | `SUPABASE_SERVICE_KEY` | `eyJ...` |
 
-5. Railway auto-detects the `Procfile` and `runtime.txt`
-6. Deploy — wait for green status
+5. Railway auto-detects the `Dockerfile` in the backend root and builds from it
+   > **Note:** Railway uses `Dockerfile` (not `Procfile`) because the Dockerfile exists in `backend/`. The Dockerfile installs `tesseract-ocr` for PDF text extraction and reads `$PORT` from the environment.
+6. Set **Healthcheck Path** to `/v1/health` in Railway service settings
+7. Deploy — wait for green status
 
 ### Run Migrations (one-time)
 
 ```bash
-# Via Railway CLI
+# Via Railway CLI — apply all Alembic migrations
 railway run python -m scripts.migrate_and_seed
 
-# Or with --seed for demo data
+# Or with --seed to also create demo users + suppliers in PostgreSQL
 railway run python -m scripts.migrate_and_seed --seed
 ```
+
+> The `--seed` flag creates demo tenants, users, and cases directly in your production PostgreSQL (via `DATABASE_URL`). It is idempotent — running it twice will skip if data already exists.
 
 ---
 
