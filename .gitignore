@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# Environment / Secrets
+backend/.env
+.env
+
+# Node
+node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Docker
+docker-compose.override.yml
+
+# File uploads (local dev + test)
+uploads/
+backend/uploads/
+backend/test_uploads*/
+demo_uploads/
+
+# Databases
+*.db
+
+# Build artifacts
+.ruff_cache/
+
+# Eval artifacts
+eval/accuracy_report.json
+
+# Claude Code config (local settings)
+.claude/

@@ -1,0 +1,30 @@
+doc_id,doc_type,canonical_key,expected_value,expected_unit,expected_page,expected_snippet_contains
+01_commercial_invoice,invoice,shipment.invoice_number,YT-2026-INV-0847,,1,Invoice No
+01_commercial_invoice,invoice,shipment.invoice_date,2026-02-03,,1,03 February 2026
+01_commercial_invoice,invoice,shipment.total_quantity,12000,pcs,1,"12,000"
+01_commercial_invoice,invoice,customs.hs_code,6109.10.00,,1,HS Code
+01_commercial_invoice,invoice,product.sku,YT-TS-4420,,1,YT-TS-4420
+01_commercial_invoice,invoice,factory.country,Turkey,,1,TURKEY
+02_packing_list,packing_list,shipment.packing_list_number,YT-2026-PL-0847,,1,Packing List No
+02_packing_list,packing_list,shipment.total_quantity,12000,pcs,1,"12,000"
+03_oekotex_certificate,certificate,certificate.oekotex.number,SH025 189456 TESTEX,,1,Certificate No
+03_oekotex_certificate,certificate,certificate.oekotex.valid_until,2026-03-14,,1,14 March 2026
+03_oekotex_certificate,certificate,certificate.issuer,TESTEX AG,,1,TESTEX AG
+04_test_report_sgs,test_report,test_report.lab_name,SGS,,1,SGS SUPERVISE
+04_test_report_sgs,test_report,test_report.report_number,SGS/IST-2026-TR-004521,,1,Report No
+04_test_report_sgs,test_report,test_report.report_date,2026-01-28,,1,28 January 2026
+04_test_report_sgs,test_report,test_report.result_pass_fail,PASS,,1,OVERALL RESULT: PASS
+04_test_report_sgs,test_report,material.composition.cotton_pct,95,,1,95
+04_test_report_sgs,test_report,material.composition.elastane_pct,5,,1,5
+05_sds_reactive_dye,sds,sds.exists,true,,1,SAFETY DATA SHEET
+05_sds_reactive_dye,sds,chemical.restricted_substances_pass_fail,PASS,,1,NOT release any
+06_bom_material_declaration,bom,material.composition.cotton_pct,95,,1,95%
+06_bom_material_declaration,bom,material.composition.elastane_pct,5,,1,5%
+06_bom_material_declaration,bom,material.composition.total_pct,100,,1,100%
+06_bom_material_declaration,bom,product.sku,YT-TS-4420,,1,YT-TS-4420
+06_bom_material_declaration,bom,product.name,Men's Basic T-Shirt - Crew Neck,,1,Men
+06_bom_material_declaration,bom,batch.id,LOT-2026-0024,,1,LOT-2026-0024
+06_bom_material_declaration,bom,batch.production_date_from,2026-01-05,,1,05 January 2026
+06_bom_material_declaration,bom,batch.production_date_to,2026-01-25,,1,25 January 2026
+06_bom_material_declaration,bom,factory.name,Yildiz Tekstil OSB Fabrika,,1,Yildiz Tekstil OSB
+06_bom_material_declaration,bom,factory.country,Turkey,,1,Turkey
