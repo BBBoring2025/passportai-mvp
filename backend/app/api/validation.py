@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 import uuid
 from datetime import UTC, datetime
 
@@ -64,17 +63,10 @@ def run_case_validation(
         .all()
     )
 
-    result_responses = []
-    for r in results:
-        resp = ValidationResultResponse.model_validate(r)
-        if r.related_field_ids:
-            try:
-                resp.related_field_ids = json.loads(
-                    r.related_field_ids
-                )
-            except json.JSONDecodeError:
-                resp.related_field_ids = None
-        result_responses.append(resp)
+    # field_validator on ValidationResultResponse handles JSON→list
+    result_responses = [
+        ValidationResultResponse.model_validate(r) for r in results
+    ]
 
     return ValidationSummary(
         case_id=case.id,

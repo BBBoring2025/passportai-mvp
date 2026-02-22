@@ -5,7 +5,9 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel
+import json
+
+from pydantic import BaseModel, field_validator
 
 # ── Validation Results ─────────────────────────────────────
 
@@ -21,6 +23,17 @@ class ValidationResultResponse(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+    @field_validator("related_field_ids", mode="before")
+    @classmethod
+    def parse_related_field_ids(cls, v):
+        """DB stores related_field_ids as JSON text; parse to list."""
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, TypeError):
+                return None
+        return v or []
 
 
 class ValidationSummary(BaseModel):
