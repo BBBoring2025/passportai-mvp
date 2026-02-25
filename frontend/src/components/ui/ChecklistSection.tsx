@@ -28,17 +28,17 @@ const SEVERITY_COLORS: Record<string, string> = {
 };
 
 const SEVERITY_LABELS: Record<string, string> = {
-  high: "Yuksek",
-  medium: "Orta",
-  low: "Dusuk",
+  high: "High",
+  medium: "Medium",
+  low: "Low",
 };
 
 const TYPE_LABELS: Record<string, string> = {
-  missing_field: "Eksik Alan",
-  missing_document: "Eksik Belge",
-  conflict_detected: "Celiskili Deger",
-  expired_document: "Suresi Dolmus Belge",
-  composition_error: "Kompozisyon Hatasi",
+  missing_field: "Missing Field",
+  missing_document: "Missing Document",
+  conflict_detected: "Conflicting Value",
+  expired_document: "Expired Document",
+  composition_error: "Composition Error",
 };
 
 export default function ChecklistSection({
@@ -69,8 +69,7 @@ export default function ChecklistSection({
     return (
       <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center">
         <p className="text-gray-500 text-sm">
-          Henuz kontrol listesi olusturulmadi. Validasyonu
-          calistirin.
+          No checklist created yet. Run validation.
         </p>
       </div>
     );
@@ -110,7 +109,7 @@ export default function ChecklistSection({
           >
             {updating === item.id
               ? "..."
-              : "Tamamlandi"}
+              : "Completed"}
           </button>
         </div>
       ))}
@@ -118,7 +117,7 @@ export default function ChecklistSection({
       {doneItems.length > 0 && (
         <details className="mt-4">
           <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700 dark:hover:text-gray-300">
-            Tamamlanan ({doneItems.length})
+            Completed ({doneItems.length})
           </summary>
           <div className="mt-2 space-y-1">
             {doneItems.map((item) => (

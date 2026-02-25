@@ -42,9 +42,9 @@ export default function BuyerSettingsPage() {
             >
               &larr; Dashboard
             </button>
-            <h1 className="text-2xl font-bold">Ayarlar</h1>
+            <h1 className="text-2xl font-bold">Settings</h1>
             <p className="text-sm text-gray-500 mt-1">
-              Alici tercihlerini yapilandirin
+              Configure buyer preferences
             </p>
           </div>
           <button
@@ -61,11 +61,11 @@ export default function BuyerSettingsPage() {
         {/* Tier preference */}
         <div className="p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
           <h2 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
-            Minimum Kabul Katmani
+            Minimum Acceptance Tier
           </h2>
           <p className="text-xs text-gray-500 mb-4">
-            Alan verilerinin kabul edilmesi icin gereken minimum dogrulama
-            katmanini secin.
+            Select the minimum validation tier required for field data
+            acceptance.
           </p>
 
           <div className="space-y-3">
@@ -79,10 +79,9 @@ export default function BuyerSettingsPage() {
                 className="w-4 h-4 text-blue-600"
               />
               <div>
-                <span className="text-sm font-medium">L1 — Otomatik Cikarim</span>
+                <span className="text-sm font-medium">L1 — Automatic Extraction</span>
                 <p className="text-xs text-gray-500">
-                  AI tarafindan cikarilan alanlar kabul edilir (daha hizli, daha
-                  az dogruluk)
+                  AI-extracted fields are accepted (faster, lower accuracy)
                 </p>
               </div>
             </label>
@@ -98,11 +97,11 @@ export default function BuyerSettingsPage() {
               />
               <div>
                 <span className="text-sm font-medium">
-                  L2 — Admin Onayli (Onerilen)
+                  L2 — Admin Approved (Recommended)
                 </span>
                 <p className="text-xs text-gray-500">
-                  Sadece admin tarafindan incelenip onaylanan alanlar kabul
-                  edilir (daha yavas, daha dogruluk)
+                  Only fields reviewed and approved by admin are accepted
+                  (slower, higher accuracy)
                 </p>
               </div>
             </label>
@@ -113,11 +112,11 @@ export default function BuyerSettingsPage() {
               onClick={handleSave}
               className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700"
             >
-              Kaydet
+              Save
             </button>
             {saved && (
               <span className="text-sm text-green-600 dark:text-green-400">
-                Kaydedildi!
+                Saved!
               </span>
             )}
           </div>

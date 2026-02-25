@@ -84,13 +84,13 @@ export default function SupplierCasesPage() {
     <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">Paketlerim</h1>
+          <h1 className="text-2xl font-bold">My Packages</h1>
           <div className="flex items-center gap-3">
             <button
               onClick={() => setShowForm(!showForm)}
               className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700"
             >
-              Yeni Paket Olustur
+              Create New Package
             </button>
             <button
               onClick={() => {
@@ -107,11 +107,11 @@ export default function SupplierCasesPage() {
         {/* Create Case Form */}
         {showForm && (
           <div className="mb-8 p-6 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/50">
-            <h2 className="text-lg font-semibold mb-4">Yeni Paket</h2>
+            <h2 className="text-lg font-semibold mb-4">New Package</h2>
             <form onSubmit={handleCreate} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Referans No *
+                  Reference No *
                 </label>
                 <input
                   type="text"
@@ -125,23 +125,23 @@ export default function SupplierCasesPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Urun Grubu
+                  Product Group
                 </label>
                 <select
                   value={productGroup}
                   onChange={(e) => setProductGroup(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="textiles">Tekstil</option>
-                  <option value="footwear">Ayakkabi</option>
-                  <option value="accessories">Aksesuar</option>
+                  <option value="textiles">Textiles</option>
+                  <option value="footwear">Footwear</option>
+                  <option value="accessories">Accessories</option>
                 </select>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Baslangic Tarihi
+                    Start Date
                   </label>
                   <input
                     type="date"
@@ -152,7 +152,7 @@ export default function SupplierCasesPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Bitis Tarihi
+                    End Date
                   </label>
                   <input
                     type="date"
@@ -165,7 +165,7 @@ export default function SupplierCasesPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Notlar
+                  Notes
                 </label>
                 <textarea
                   value={notes}
@@ -187,14 +187,14 @@ export default function SupplierCasesPage() {
                   disabled={creating || !referenceNo}
                   className="px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
                 >
-                  {creating ? "Olusturuluyor..." : "Olustur"}
+                  {creating ? "Creating..." : "Create"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
                   className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-sm hover:bg-gray-50 dark:hover:bg-gray-800"
                 >
-                  Iptal
+                  Cancel
                 </button>
               </div>
             </form>
@@ -203,11 +203,11 @@ export default function SupplierCasesPage() {
 
         {/* Cases List */}
         {loading ? (
-          <p className="text-gray-500 text-center py-12">Yukleniyor...</p>
+          <p className="text-gray-500 text-center py-12">Loading...</p>
         ) : cases.length === 0 ? (
           <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-12 text-center">
             <p className="text-gray-500">
-              Henuz paket yok. Yukaridaki butonu kullanarak yeni bir paket olusturun.
+              No packages yet. Use the button above to create a new package.
             </p>
           </div>
         ) : (
@@ -225,7 +225,7 @@ export default function SupplierCasesPage() {
                     </p>
                     <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                       <span>{c.product_group}</span>
-                      <span>{c.document_count} dosya</span>
+                      <span>{c.document_count} files</span>
                       {c.date_from && (
                         <span>
                           {c.date_from}
@@ -233,7 +233,7 @@ export default function SupplierCasesPage() {
                         </span>
                       )}
                       <span>
-                        {new Date(c.created_at).toLocaleDateString("tr-TR")}
+                        {new Date(c.created_at).toLocaleDateString("en-US")}
                       </span>
                     </div>
                   </div>

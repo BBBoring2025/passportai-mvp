@@ -24,31 +24,31 @@ interface AdminField {
 
 // Canonical keys matching backend/app/services/ai/field_mapping.py
 const FIELD_LABELS: Record<string, string> = {
-  "shipment.invoice_number": "Fatura No",
-  "shipment.invoice_date": "Fatura Tarihi",
-  "shipment.total_quantity": "Toplam Miktar",
-  "shipment.unit": "Birim",
-  "customs.hs_code": "HS Kodu",
-  "product.sku": "Urun Kodu (SKU)",
-  "product.name": "Urun Adi",
-  "factory.country": "Fabrika Ulkesi",
-  "factory.name": "Fabrika Adi",
-  "shipment.packing_list_number": "Ambalaj Listesi No",
-  "certificate.oekotex.number": "OEKO-TEX Sertifika No",
-  "certificate.oekotex.valid_until": "Gecerlilik Tarihi",
-  "certificate.issuer": "Sertifika Veren Kurum",
-  "test_report.lab_name": "Laboratuvar Adi",
-  "test_report.report_number": "Rapor Numarasi",
-  "test_report.report_date": "Rapor Tarihi",
-  "test_report.result_pass_fail": "Sonuc (Gecti/Kaldi)",
-  "material.composition.cotton_pct": "Pamuk %",
-  "material.composition.elastane_pct": "Elastan %",
-  "material.composition.total_pct": "Toplam %",
-  "sds.exists": "SDS Mevcut",
-  "chemical.restricted_substances_pass_fail": "Kisitli Madde Sonucu",
-  "batch.id": "Parti Numarasi",
-  "batch.production_date_from": "Uretim Baslangic",
-  "batch.production_date_to": "Uretim Bitis",
+  "shipment.invoice_number": "Invoice No",
+  "shipment.invoice_date": "Invoice Date",
+  "shipment.total_quantity": "Total Quantity",
+  "shipment.unit": "Unit",
+  "customs.hs_code": "HS Code",
+  "product.sku": "Product Code (SKU)",
+  "product.name": "Product Name",
+  "factory.country": "Factory Country",
+  "factory.name": "Factory Name",
+  "shipment.packing_list_number": "Packing List No",
+  "certificate.oekotex.number": "OEKO-TEX Certificate No",
+  "certificate.oekotex.valid_until": "Validity Date",
+  "certificate.issuer": "Issuing Body",
+  "test_report.lab_name": "Laboratory Name",
+  "test_report.report_number": "Report Number",
+  "test_report.report_date": "Report Date",
+  "test_report.result_pass_fail": "Result (Pass/Fail)",
+  "material.composition.cotton_pct": "Cotton Ratio (%)",
+  "material.composition.elastane_pct": "Elastane Ratio (%)",
+  "material.composition.total_pct": "Total Composition (%)",
+  "sds.exists": "SDS Available",
+  "chemical.restricted_substances_pass_fail": "Restricted Substance Result",
+  "batch.id": "Lot Number",
+  "batch.production_date_from": "Production Start",
+  "batch.production_date_to": "Production End",
 };
 
 export default function AdminReviewQueuePage() {
@@ -75,7 +75,7 @@ export default function AdminReviewQueuePage() {
       setFields(data);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Kuyruk yuklenemedi"
+        err instanceof Error ? err.message : "Queue could not be loaded"
       );
     } finally {
       setLoading(false);
@@ -97,7 +97,7 @@ export default function AdminReviewQueuePage() {
       setFields((prev) => prev.filter((f) => f.id !== fieldId));
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Onaylama basarisiz"
+        err instanceof Error ? err.message : "Approval failed"
       );
     } finally {
       setActionInProgress(null);
@@ -119,7 +119,7 @@ export default function AdminReviewQueuePage() {
       setRejectReason("");
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Reddetme basarisiz"
+        err instanceof Error ? err.message : "Rejection failed"
       );
     } finally {
       setActionInProgress(null);
@@ -131,7 +131,7 @@ export default function AdminReviewQueuePage() {
       <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
         <div className="max-w-6xl mx-auto">
           <p className="text-gray-500 text-center py-12">
-            Yukleniyor...
+            Loading...
           </p>
         </div>
       </div>
@@ -143,9 +143,9 @@ export default function AdminReviewQueuePage() {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-2xl font-bold">L2 Onay Kuyrugu</h1>
+            <h1 className="text-2xl font-bold">L2 Approval Queue</h1>
             <p className="text-sm text-gray-500 mt-1">
-              {fields.length} alan inceleme bekliyor
+              {fields.length} field(s) pending review
             </p>
           </div>
           <button
@@ -170,7 +170,7 @@ export default function AdminReviewQueuePage() {
         {fields.length === 0 ? (
           <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-12 text-center">
             <p className="text-gray-500">
-              Inceleme bekleyen alan bulunmuyor.
+              No fields pending review.
             </p>
           </div>
         ) : (
@@ -179,25 +179,25 @@ export default function AdminReviewQueuePage() {
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Alan
+                    Field
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Deger
+                    Value
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Kaynak Metin
+                    Source Text
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Tedarikci
+                    Supplier
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Paket
+                    Package
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Durum
+                    Status
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-right">
-                    Islem
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -237,7 +237,7 @@ export default function AdminReviewQueuePage() {
                         <div className="flex items-center gap-2 justify-end">
                           <input
                             type="text"
-                            placeholder="Sebep (opsiyonel)"
+                            placeholder="Reason (optional)"
                             value={rejectReason}
                             onChange={(e) =>
                               setRejectReason(e.target.value)
@@ -255,7 +255,7 @@ export default function AdminReviewQueuePage() {
                           >
                             {actionInProgress === field.id
                               ? "..."
-                              : "Reddet"}
+                              : "Reject"}
                           </button>
                           <button
                             onClick={() => {
@@ -264,7 +264,7 @@ export default function AdminReviewQueuePage() {
                             }}
                             className="px-2 py-1 text-xs text-gray-500 hover:text-gray-700"
                           >
-                            Iptal
+                            Cancel
                           </button>
                         </div>
                       ) : (
@@ -280,7 +280,7 @@ export default function AdminReviewQueuePage() {
                           >
                             {actionInProgress === field.id
                               ? "..."
-                              : "Onayla"}
+                              : "Approve"}
                           </button>
                           <button
                             onClick={() =>
@@ -291,7 +291,7 @@ export default function AdminReviewQueuePage() {
                             }
                             className="px-3 py-1.5 text-xs font-medium rounded bg-red-600 text-white hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed"
                           >
-                            Reddet
+                            Reject
                           </button>
                         </div>
                       )}

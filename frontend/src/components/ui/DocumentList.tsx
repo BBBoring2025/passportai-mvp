@@ -23,12 +23,12 @@ interface DocumentListProps {
   onRetry?: (documentId: string) => void;
 }
 
-// Turkish labels for doc_type
+// English labels for doc_type
 const DOC_TYPE_LABELS: Record<string, string> = {
-  invoice: "Fatura",
-  packing_list: "Ambalaj Listesi",
-  certificate: "Sertifika",
-  test_report: "Test Raporu",
+  invoice: "Invoice",
+  packing_list: "Packing List",
+  certificate: "Certificate",
+  test_report: "Test Report",
   sds: "SDS",
   bom: "BOM",
 };
@@ -53,7 +53,7 @@ export default function DocumentList({ documents, onRetry }: DocumentListProps) 
   return (
     <div className="mt-6">
       <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-        Yuklenen Dosyalar ({documents.length})
+        Uploaded Files ({documents.length})
       </h3>
       <div className="space-y-2">
         {documents.map((doc) => (
@@ -90,7 +90,7 @@ export default function DocumentList({ documents, onRetry }: DocumentListProps) 
                   )}
                   {doc.page_count != null && (
                     <span className="text-xs text-gray-400">
-                      {doc.page_count} sayfa
+                      {doc.page_count} pages
                     </span>
                   )}
                   {doc.sha256_hash && (
@@ -110,7 +110,7 @@ export default function DocumentList({ documents, onRetry }: DocumentListProps) 
                     onClick={() => onRetry(doc.id)}
                     className="text-xs px-2 py-1 rounded bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/50"
                   >
-                    Tekrar Dene
+                    Retry
                   </button>
                 )}
                 <StatusBadge status={doc.processing_status} />

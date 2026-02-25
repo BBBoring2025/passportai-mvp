@@ -23,8 +23,8 @@ function AcceptInviteForm() {
         <h1 className="text-2xl font-bold">PassportAI</h1>
         <div className="p-3 rounded bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
           <p className="text-sm text-red-700 dark:text-red-400">
-            Gecersiz davet linki. Lutfen alici firmadan yeni bir davet
-            isteyin.
+            Invalid invite link. Please request a new invite from the buyer
+            company.
           </p>
         </div>
       </div>
@@ -36,11 +36,11 @@ function AcceptInviteForm() {
     setError("");
 
     if (password !== passwordConfirm) {
-      setError("Sifreler eslesmiyor.");
+      setError("Passwords do not match.");
       return;
     }
     if (password.length < 6) {
-      setError("Sifre en az 6 karakter olmalidir.");
+      setError("Password must be at least 6 characters.");
       return;
     }
 
@@ -60,7 +60,7 @@ function AcceptInviteForm() {
       saveAuth(data);
       router.push("/supplier/cases");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Hesap olusturulamadi");
+      setError(err instanceof Error ? err.message : "Account could not be created");
     } finally {
       setLoading(false);
     }
@@ -70,7 +70,7 @@ function AcceptInviteForm() {
     <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
       <h1 className="text-2xl font-bold text-center">PassportAI</h1>
       <p className="text-sm text-gray-500 text-center">
-        Daveti Kabul Et — Tedarikci hesabinizi olusturun
+        Accept Invite — Create your supplier account
       </p>
 
       {error && (
@@ -81,7 +81,7 @@ function AcceptInviteForm() {
 
       <div>
         <label htmlFor="fullName" className="block text-sm font-medium mb-1">
-          Ad Soyad
+          Full Name
         </label>
         <input
           id="fullName"
@@ -89,14 +89,14 @@ function AcceptInviteForm() {
           required
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          placeholder="Ahmet Yilmaz"
+          placeholder="John Doe"
           className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       <div>
         <label htmlFor="password" className="block text-sm font-medium mb-1">
-          Sifre
+          Password
         </label>
         <input
           id="password"
@@ -104,7 +104,7 @@ function AcceptInviteForm() {
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="En az 6 karakter"
+          placeholder="At least 6 characters"
           className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
@@ -114,7 +114,7 @@ function AcceptInviteForm() {
           htmlFor="passwordConfirm"
           className="block text-sm font-medium mb-1"
         >
-          Sifre Tekrar
+          Confirm Password
         </label>
         <input
           id="passwordConfirm"
@@ -131,13 +131,13 @@ function AcceptInviteForm() {
         disabled={loading}
         className="w-full py-2 px-4 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
       >
-        {loading ? "Hesap olusturuluyor..." : "Hesap Olustur"}
+        {loading ? "Creating account..." : "Create Account"}
       </button>
 
       <p className="text-xs text-gray-400 text-center">
-        Zaten hesabiniz var mi?{" "}
+        Already have an account?{" "}
         <a href="/login" className="text-blue-500 hover:underline">
-          Giris yapin
+          Sign in
         </a>
       </p>
     </form>
@@ -149,7 +149,7 @@ export default function AcceptInvitePage() {
     <div className="min-h-screen flex items-center justify-center p-8 font-[family-name:var(--font-geist-sans)]">
       <Suspense
         fallback={
-          <p className="text-gray-500 text-center">Yukleniyor...</p>
+          <p className="text-gray-500 text-center">Loading...</p>
         }
       >
         <AcceptInviteForm />

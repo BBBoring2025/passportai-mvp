@@ -61,7 +61,7 @@ export default function BuyerDashboardPage() {
       setData(d);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Dashboard yuklenemedi"
+        err instanceof Error ? err.message : "Dashboard could not be loaded"
       );
     } finally {
       setLoading(false);
@@ -85,12 +85,12 @@ export default function BuyerDashboardPage() {
       });
       const link = `${window.location.origin}/accept-invite?token=${invite.token}`;
       setInviteLink(link);
-      setInviteMessage(`Davet gonderildi: ${inviteEmail}`);
+      setInviteMessage(`Invite sent: ${inviteEmail}`);
       setInviteEmail("");
       setShowInviteForm(false);
     } catch (err) {
       setInviteMessage(
-        err instanceof Error ? err.message : "Davet gonderilemedi"
+        err instanceof Error ? err.message : "Invite could not be sent"
       );
     } finally {
       setInviting(false);
@@ -101,7 +101,7 @@ export default function BuyerDashboardPage() {
     return (
       <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
         <div className="max-w-6xl mx-auto">
-          <p className="text-gray-500 text-center py-12">Yukleniyor...</p>
+          <p className="text-gray-500 text-center py-12">Loading...</p>
         </div>
       </div>
     );
@@ -116,9 +116,9 @@ export default function BuyerDashboardPage() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-2xl font-bold">Tedarikci Hazirlik Paneli</h1>
+            <h1 className="text-2xl font-bold">Supplier Readiness Dashboard</h1>
             <p className="text-sm text-gray-500 mt-1">
-              Bagli tedarikcilerin DPP hazirlik durumu
+              DPP readiness status of connected suppliers
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -126,7 +126,7 @@ export default function BuyerDashboardPage() {
               onClick={() => router.push("/buyer/settings")}
               className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
             >
-              Ayarlar
+              Settings
             </button>
             <button
               onClick={() => {
@@ -145,31 +145,31 @@ export default function BuyerDashboardPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Toplam Tedarikci
+                Total Suppliers
               </p>
               <p className="text-2xl font-bold mt-1">{agg.total_suppliers}</p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Ortalama Kapsam
+                Average Coverage
               </p>
               <p className={`text-2xl font-bold mt-1 ${coverageColor(agg.avg_coverage)}`}>
-                %{agg.avg_coverage.toFixed(1)}
+                {agg.avg_coverage.toFixed(1)}%
               </p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Toplam Cakisma
+                Total Conflicts
               </p>
               <p className="text-2xl font-bold mt-1">{agg.total_conflicts}</p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Ort. Hazirlik Suresi
+                Avg. Readiness Time
               </p>
               <p className="text-2xl font-bold mt-1">
                 {agg.avg_days_to_ready != null
-                  ? `${agg.avg_days_to_ready.toFixed(1)} gun`
+                  ? `${agg.avg_days_to_ready.toFixed(1)} days`
                   : "—"}
               </p>
             </div>
@@ -203,7 +203,7 @@ export default function BuyerDashboardPage() {
                   }}
                   className="px-3 py-1 text-xs font-medium rounded bg-blue-600 text-white hover:bg-blue-700 whitespace-nowrap"
                 >
-                  Kopyala
+                  Copy
                 </button>
               </div>
             )}
@@ -216,7 +216,7 @@ export default function BuyerDashboardPage() {
             onClick={() => setShowInviteForm(!showInviteForm)}
             className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700"
           >
-            Supplier Davet Et
+            Invite Supplier
           </button>
         </div>
 
@@ -228,7 +228,7 @@ export default function BuyerDashboardPage() {
           >
             <div className="flex-1">
               <label className="text-xs font-medium text-gray-500 block mb-1">
-                Tedarikci E-posta
+                Supplier Email
               </label>
               <input
                 type="email"
@@ -244,14 +244,14 @@ export default function BuyerDashboardPage() {
               disabled={inviting || !inviteEmail}
               className="px-4 py-2 text-sm font-medium rounded-lg bg-green-600 text-white hover:bg-green-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {inviting ? "Gonderiliyor..." : "Davet Gonder"}
+              {inviting ? "Sending..." : "Send Invite"}
             </button>
             <button
               type="button"
               onClick={() => setShowInviteForm(false)}
               className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700"
             >
-              Iptal
+              Cancel
             </button>
           </form>
         )}
@@ -260,7 +260,7 @@ export default function BuyerDashboardPage() {
         {suppliers.length === 0 ? (
           <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-12 text-center">
             <p className="text-gray-500">
-              Bagli tedarikci bulunmuyor. Bir tedarikci davet ederek baslayin.
+              No connected suppliers. Start by inviting a supplier.
             </p>
           </div>
         ) : (
@@ -269,25 +269,25 @@ export default function BuyerDashboardPage() {
               <thead>
                 <tr className="border-b border-gray-200 dark:border-gray-700 text-left">
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Tedarikci Adi
+                    Supplier Name
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Durum
+                    Status
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Kapsam %
+                    Coverage %
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Cakisma
+                    Conflicts
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
                     L1 / L2
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400">
-                    Hazirlik
+                    Readiness
                   </th>
                   <th className="py-3 px-4 font-medium text-gray-500 dark:text-gray-400 text-right">
-                    Islem
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -304,11 +304,11 @@ export default function BuyerDashboardPage() {
                       <StatusBadge status={s.status} />
                     </td>
                     <td className={`py-3 px-4 font-bold ${coverageColor(s.coverage_pct)}`}>
-                      %{s.coverage_pct.toFixed(1)}
+                      {s.coverage_pct.toFixed(1)}%
                     </td>
                     <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
                       {s.conflict_rate > 0
-                        ? `%${s.conflict_rate.toFixed(1)}`
+                        ? `${s.conflict_rate.toFixed(1)}%`
                         : "—"}
                     </td>
                     <td className="py-3 px-4 text-gray-600 dark:text-gray-400 font-mono text-xs">
@@ -316,7 +316,7 @@ export default function BuyerDashboardPage() {
                     </td>
                     <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
                       {s.days_to_ready != null
-                        ? `${s.days_to_ready.toFixed(1)} gun`
+                        ? `${s.days_to_ready.toFixed(1)} days`
                         : "—"}
                     </td>
                     <td className="py-3 px-4 text-right">
@@ -329,7 +329,7 @@ export default function BuyerDashboardPage() {
                           }
                           className="px-3 py-1.5 text-xs font-medium rounded bg-blue-600 text-white hover:bg-blue-700"
                         >
-                          Detay
+                          Details
                         </button>
                       ) : (
                         <span className="text-xs text-gray-400">—</span>

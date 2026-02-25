@@ -59,7 +59,7 @@ export default function BuyerSupplierDetailPage() {
 
   const fetchData = useCallback(async () => {
     if (!caseId) {
-      setError("Case ID belirtilmedi");
+      setError("Case ID not specified");
       setLoading(false);
       return;
     }
@@ -75,7 +75,7 @@ export default function BuyerSupplierDetailPage() {
       setFields(f);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Veri yuklenemedi"
+        err instanceof Error ? err.message : "Data could not be loaded"
       );
     } finally {
       setLoading(false);
@@ -107,7 +107,7 @@ export default function BuyerSupplierDetailPage() {
       URL.revokeObjectURL(url);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Rapor indirilemedi"
+        err instanceof Error ? err.message : "Report could not be downloaded"
       );
     } finally {
       setDownloading(false);
@@ -118,7 +118,7 @@ export default function BuyerSupplierDetailPage() {
     return (
       <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
         <div className="max-w-4xl mx-auto">
-          <p className="text-gray-500 text-center py-12">Yukleniyor...</p>
+          <p className="text-gray-500 text-center py-12">Loading...</p>
         </div>
       </div>
     );
@@ -138,14 +138,14 @@ export default function BuyerSupplierDetailPage() {
             </button>
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold">
-                Tedarikci Detay
+                Supplier Detail
               </h1>
               {caseData && <StatusBadge status={caseData.status} />}
             </div>
             {caseData && (
               <p className="text-sm text-gray-500 mt-1">
-                Paket: {caseData.reference_no} | {caseData.product_group} |{" "}
-                {new Date(caseData.created_at).toLocaleDateString("tr-TR")}
+                Package: {caseData.reference_no} | {caseData.product_group} |{" "}
+                {new Date(caseData.created_at).toLocaleDateString("en-US")}
               </p>
             )}
           </div>
@@ -172,43 +172,43 @@ export default function BuyerSupplierDetailPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Kapsam
+                Coverage
               </p>
               <p className={`text-2xl font-bold mt-1 ${coverageColor(metrics.evidence_coverage_pct)}`}>
-                %{metrics.evidence_coverage_pct.toFixed(1)}
+                {metrics.evidence_coverage_pct.toFixed(1)}%
               </p>
               <p className="text-xs text-gray-400 mt-1">
-                {metrics.required_fields_present}/{metrics.required_fields_total} zorunlu alan
+                {metrics.required_fields_present}/{metrics.required_fields_total} required fields
               </p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Cakisma Orani
+                Conflict Rate
               </p>
               <p className="text-2xl font-bold mt-1">
-                %{metrics.conflict_rate.toFixed(1)}
+                {metrics.conflict_rate.toFixed(1)}%
               </p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Alanlar (L1/L2)
+                Fields (L1/L2)
               </p>
               <p className="text-2xl font-bold mt-1">
                 {metrics.l1_fields} / {metrics.l2_fields}
               </p>
               <p className="text-xs text-gray-400 mt-1">
-                {metrics.buyer_visible_fields} alici gorunur
+                {metrics.buyer_visible_fields} buyer visible
               </p>
             </div>
             <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                Kontrol Listesi
+                Checklist
               </p>
               <p className="text-2xl font-bold mt-1">
                 {metrics.checklist_done}/{metrics.checklist_open + metrics.checklist_done}
               </p>
               <p className="text-xs text-gray-400 mt-1">
-                tamamlandi
+                completed
               </p>
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function BuyerSupplierDetailPage() {
         {fields.length > 0 ? (
           <div className="mt-8">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-              Onaylanmis Alanlar ({fields.length})
+              Approved Fields ({fields.length})
             </h3>
             <FieldCategoryAccordion
               fields={fields}
@@ -227,8 +227,8 @@ export default function BuyerSupplierDetailPage() {
         ) : (
           <div className="border border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-8 text-center mt-8">
             <p className="text-gray-500">
-              Henuz alici gorunur alan bulunmuyor.
-              Alanlar admin tarafindan onaylandiktan sonra burada gorunecektir.
+              No buyer-visible fields yet.
+              Fields will appear here after admin approval.
             </p>
           </div>
         )}
@@ -241,7 +241,7 @@ export default function BuyerSupplierDetailPage() {
               disabled={downloading}
               className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              {downloading ? "Indiriliyor..." : "Rapor Indir"}
+              {downloading ? "Downloading..." : "Download Report"}
             </button>
           )}
         </div>

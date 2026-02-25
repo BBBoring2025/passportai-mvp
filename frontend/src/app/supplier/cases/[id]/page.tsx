@@ -155,7 +155,7 @@ export default function CaseDetailPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Islem basarisiz oldu"
+          : "Operation failed"
       );
     } finally {
       setProcessing(false);
@@ -180,7 +180,7 @@ export default function CaseDetailPage() {
         setError(
           err instanceof Error
             ? err.message
-            : "Tekrar deneme basarisiz oldu"
+            : "Retry failed"
         );
       }
     },
@@ -222,8 +222,8 @@ export default function CaseDetailPage() {
     }
 
     setExtractionProgress(
-      `Tamamlandi: ${total} alan cikarildi` +
-        (errors > 0 ? `, ${errors} hatali` : "")
+      `Completed: ${total} fields extracted` +
+        (errors > 0 ? `, ${errors} errors` : "")
     );
 
     // Refresh all data
@@ -272,8 +272,8 @@ export default function CaseDetailPage() {
       }>(`/cases/${caseId}/run-validation`, { method: "POST" });
 
       setValidationMessage(
-        `Validasyon tamamlandi: ${result.passed} gecti, ${result.failed} basarisiz, ${result.warnings} uyari. ` +
-          `${result.checklist_items_created} kontrol maddesi olusturuldu.`
+        `Validation complete: ${result.passed} passed, ${result.failed} failed, ${result.warnings} warning. ` +
+          `${result.checklist_items_created} checklist items created.`
       );
 
       // Refresh checklist
@@ -289,7 +289,7 @@ export default function CaseDetailPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Validasyon basarisiz oldu"
+          : "Validation failed"
       );
     } finally {
       setValidating(false);
@@ -317,7 +317,7 @@ export default function CaseDetailPage() {
       <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
         <div className="max-w-4xl mx-auto">
           <p className="text-gray-500 text-center py-12">
-            Yukleniyor...
+            Loading...
           </p>
         </div>
       </div>
@@ -350,7 +350,7 @@ export default function CaseDetailPage() {
               onClick={() => router.push("/supplier/cases")}
               className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 mb-2 flex items-center gap-1"
             >
-              &larr; Paketlerim
+              &larr; My Packages
             </button>
             <div className="flex items-center gap-3">
               <h1 className="text-2xl font-bold">
@@ -370,7 +370,7 @@ export default function CaseDetailPage() {
               )}
               <span>
                 {new Date(caseData.created_at).toLocaleDateString(
-                  "tr-TR"
+                  "en-US"
                 )}
               </span>
             </div>
@@ -419,10 +419,10 @@ export default function CaseDetailPage() {
         {processingResult && (
           <div className="mt-4 p-3 rounded bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
             <p className="text-sm text-blue-700 dark:text-blue-400">
-              {processingResult.documents_processed} dosya
-              islendi
+              {processingResult.documents_processed} files
+              processed
               {processingResult.documents_errored > 0 &&
-                `, ${processingResult.documents_errored} hatali`}
+                `, ${processingResult.documents_errored} errors`}
             </p>
           </div>
         )}
@@ -440,7 +440,7 @@ export default function CaseDetailPage() {
         {(hasExtractedDocs || fields.length > 0) && (
           <div className="mt-8">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-              Cikarilan Alanlar ({fields.length})
+              Extracted Fields ({fields.length})
             </h3>
             <FieldCategoryAccordion
               fields={fields}
@@ -462,7 +462,7 @@ export default function CaseDetailPage() {
         {(checklistItems.length > 0 || hasExtractedDocs) && (
           <div className="mt-8">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-              Kontrol Listesi ({checklistItems.filter((i) => i.status !== "done").length} acik)
+              Checklist ({checklistItems.filter((i) => i.status !== "done").length} open)
             </h3>
             <ChecklistSection
               items={checklistItems}
@@ -480,8 +480,8 @@ export default function CaseDetailPage() {
               className="px-6 py-3 rounded-lg bg-green-600 text-white font-medium hover:bg-green-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {processing
-                ? "Isleniyor..."
-                : "Islemeyi Baslat"}
+                ? "Processing..."
+                : "Start Processing"}
             </button>
           )}
 
@@ -491,7 +491,7 @@ export default function CaseDetailPage() {
               disabled={extracting}
               className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              AI Cikarma Baslat
+              Start AI Extraction
             </button>
           )}
 
@@ -501,7 +501,7 @@ export default function CaseDetailPage() {
               className="px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium opacity-60 cursor-not-allowed flex items-center gap-2"
             >
               <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-              Cikariliyor...
+              Extracting...
             </button>
           )}
 
@@ -511,7 +511,7 @@ export default function CaseDetailPage() {
               disabled={validating}
               className="px-6 py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-700 disabled:opacity-40 disabled:cursor-not-allowed"
             >
-              Validasyonu Calistir
+              Run Validation
             </button>
           )}
 
@@ -521,7 +521,7 @@ export default function CaseDetailPage() {
               className="px-6 py-3 rounded-lg bg-purple-600 text-white font-medium opacity-60 cursor-not-allowed flex items-center gap-2"
             >
               <span className="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-              Dogrulaniyor...
+              Validating...
             </button>
           )}
         </div>

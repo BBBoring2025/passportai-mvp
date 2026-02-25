@@ -46,31 +46,31 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 const STATUS_LABELS: Record<string, string> = {
-  draft: "Taslak",
-  processing: "Isleniyor",
-  ready_l1: "L1 Hazir",
-  ready_l2: "L2 Hazir",
-  blocked: "Engellendi",
-  closed: "Kapandi",
-  uploaded: "Yuklendi",
-  text_extracted: "Metin Cikarildi",
-  classified: "Siniflandirildi",
-  extracted: "Veri Cikarildi",
-  error: "Hata",
+  draft: "Draft",
+  processing: "Processing",
+  ready_l1: "L1 Ready",
+  ready_l2: "L2 Ready",
+  blocked: "Blocked",
+  closed: "Closed",
+  uploaded: "Uploaded",
+  text_extracted: "Text Extracted",
+  classified: "Classified",
+  extracted: "Data Extracted",
+  error: "Error",
   // Field statuses
-  pending_review: "Inceleme Bekliyor",
-  approved: "Onaylandi",
-  conflict: "Celiskili",
-  rejected: "Reddedildi",
-  missing: "Eksik",
+  pending_review: "Pending Review",
+  approved: "Approved",
+  conflict: "Conflicting",
+  rejected: "Rejected",
+  missing: "Missing",
   // Checklist statuses
-  open: "Acik",
-  done: "Tamamlandi",
-  reopened: "Yeniden Acildi",
+  open: "Open",
+  done: "Completed",
+  reopened: "Reopened",
   // Validation statuses
-  pass: "Gecti",
-  fail: "Basarisiz",
-  warn: "Uyari",
+  pass: "Passed",
+  fail: "Failed",
+  warn: "Warning",
 };
 
 export default function StatusBadge({ status }: { status: string }) {

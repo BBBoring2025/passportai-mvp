@@ -128,19 +128,19 @@ export default function FileUploadZone({
         {uploading ? (
           <div>
             <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-              Yukleniyor... ({uploadCount} tamamlandi)
+              Uploading... ({uploadCount} completed)
             </p>
           </div>
         ) : (
           <div>
             <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-              Dosyalari buraya surukleyin
+              Drag files here
             </p>
             <p className="text-sm text-gray-500 mt-1">
-              veya secmek icin tiklayin
+              or click to select
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              PDF, JPG, PNG &bull; Maks. 50 MB
+              PDF, JPG, PNG &bull; Max. 50 MB
             </p>
           </div>
         )}
@@ -163,7 +163,7 @@ export default function FileUploadZone({
           disabled={uploading}
           className="w-full py-3 px-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 disabled:opacity-50"
         >
-          Fotograf Cek
+          Take Photo
         </button>
         <input
           ref={cameraInputRef}

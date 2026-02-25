@@ -7,33 +7,33 @@ import { apiFetch } from "@/lib/api";
 import StatusBadge from "@/components/ui/StatusBadge";
 import type { ExtractedField } from "@/components/ui/FieldCategoryAccordion";
 
-// Turkish labels for canonical keys
+// English labels for canonical keys
 const FIELD_LABELS: Record<string, string> = {
-  "shipment.invoice_number": "Fatura Numarasi",
-  "shipment.invoice_date": "Fatura Tarihi",
-  "shipment.total_quantity": "Toplam Miktar",
-  "shipment.unit": "Birim",
-  "customs.hs_code": "HS Kodu",
-  "product.sku": "Urun Kodu (SKU)",
-  "product.name": "Urun Adi",
-  "factory.country": "Fabrika Ulkesi",
-  "factory.name": "Fabrika Adi",
-  "shipment.packing_list_number": "Ambalaj Listesi No",
-  "certificate.oekotex.number": "OEKO-TEX Sertifika No",
-  "certificate.oekotex.valid_until": "Gecerlilik Tarihi",
-  "certificate.issuer": "Sertifika Veren Kurum",
-  "test_report.lab_name": "Laboratuvar Adi",
-  "test_report.report_number": "Rapor Numarasi",
-  "test_report.report_date": "Rapor Tarihi",
-  "test_report.result_pass_fail": "Sonuc (Gecti/Kaldi)",
-  "material.composition.cotton_pct": "Pamuk Orani (%)",
-  "material.composition.elastane_pct": "Elastan Orani (%)",
-  "material.composition.total_pct": "Toplam Oran (%)",
-  "sds.exists": "SDS Mevcut",
-  "chemical.restricted_substances_pass_fail": "Kisitli Madde Sonucu",
-  "batch.id": "Parti Numarasi",
-  "batch.production_date_from": "Uretim Baslangic",
-  "batch.production_date_to": "Uretim Bitis",
+  "shipment.invoice_number": "Invoice Number",
+  "shipment.invoice_date": "Invoice Date",
+  "shipment.total_quantity": "Total Quantity",
+  "shipment.unit": "Unit",
+  "customs.hs_code": "HS Code",
+  "product.sku": "Product Code (SKU)",
+  "product.name": "Product Name",
+  "factory.country": "Factory Country",
+  "factory.name": "Factory Name",
+  "shipment.packing_list_number": "Packing List No",
+  "certificate.oekotex.number": "OEKO-TEX Certificate No",
+  "certificate.oekotex.valid_until": "Validity Date",
+  "certificate.issuer": "Issuing Body",
+  "test_report.lab_name": "Laboratory Name",
+  "test_report.report_number": "Report Number",
+  "test_report.report_date": "Report Date",
+  "test_report.result_pass_fail": "Result (Pass/Fail)",
+  "material.composition.cotton_pct": "Cotton Ratio (%)",
+  "material.composition.elastane_pct": "Elastane Ratio (%)",
+  "material.composition.total_pct": "Total Composition (%)",
+  "sds.exists": "SDS Available",
+  "chemical.restricted_substances_pass_fail": "Restricted Substance Result",
+  "batch.id": "Lot Number",
+  "batch.production_date_from": "Production Start",
+  "batch.production_date_to": "Production End",
 };
 
 interface PageData {
@@ -71,7 +71,7 @@ export default function DocumentViewerPage() {
         setCurrentPage(pageNum);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "Sayfa yuklenemedi"
+          err instanceof Error ? err.message : "Page could not be loaded"
         );
       }
     },
@@ -97,7 +97,7 @@ export default function DocumentViewerPage() {
       return;
     }
     if (!docId) {
-      setError("Dokuman ID belirtilmedi");
+      setError("Document ID not specified");
       setLoading(false);
       return;
     }
@@ -162,7 +162,7 @@ export default function DocumentViewerPage() {
     return (
       <div className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
         <p className="text-gray-500 text-center py-12">
-          Yukleniyor...
+          Loading...
         </p>
       </div>
     );
@@ -178,10 +178,10 @@ export default function DocumentViewerPage() {
           }
           className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1"
         >
-          &larr; Pakete Don
+          &larr; Back to Package
         </button>
         <div className="text-sm text-gray-500">
-          Dokuman Goruntuleyici
+          Document Viewer
         </div>
       </div>
 
@@ -205,10 +205,10 @@ export default function DocumentViewerPage() {
               disabled={currentPage <= 1}
               className="px-3 py-1 text-sm rounded border border-gray-300 dark:border-gray-600 disabled:opacity-30 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              &larr; Onceki
+              &larr; Previous
             </button>
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              Sayfa {currentPage} / {pageData?.total_pages || "?"}
+              Page {currentPage} / {pageData?.total_pages || "?"}
             </span>
             <button
               onClick={handleNextPage}
@@ -218,7 +218,7 @@ export default function DocumentViewerPage() {
               }
               className="px-3 py-1 text-sm rounded border border-gray-300 dark:border-gray-600 disabled:opacity-30 hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              Sonraki &rarr;
+              Next &rarr;
             </button>
           </div>
 
@@ -228,7 +228,7 @@ export default function DocumentViewerPage() {
               renderPageText()
             ) : (
               <p className="text-gray-400 text-center py-8">
-                Sayfa yuklenemedi
+                Page could not be loaded
               </p>
             )}
           </div>
@@ -237,7 +237,7 @@ export default function DocumentViewerPage() {
           {pageData && (
             <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
               <span className="text-xs text-gray-400">
-                Cikarma yontemi: {pageData.extraction_method}
+                Extraction method: {pageData.extraction_method}
               </span>
             </div>
           )}
@@ -247,14 +247,14 @@ export default function DocumentViewerPage() {
         <div className="flex flex-col overflow-hidden">
           <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
             <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-              Cikarilan Alanlar ({fields.length})
+              Extracted Fields ({fields.length})
             </h3>
           </div>
 
           <div className="flex-1 overflow-auto">
             {fields.length === 0 ? (
               <p className="text-gray-400 text-center py-8 text-sm">
-                Bu dokuman icin cikarilmis alan yok
+                No extracted fields for this document
               </p>
             ) : (
               <div className="divide-y divide-gray-100 dark:divide-gray-700/50">
