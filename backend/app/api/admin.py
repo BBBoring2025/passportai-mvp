@@ -212,18 +212,18 @@ def reject_field(
     field_label = FIELD_LABELS.get(
         field.canonical_key, field.canonical_key
     )
-    reason = body.reason or "Admin tarafindan reddedildi."
+    reason = body.reason or "Rejected by admin."
 
     checklist_item = ChecklistItem(
         case_id=field.case_id,
         type="missing_field",
         severity="high",
         status="open",
-        title=f"Reddedilen Alan: {field_label}",
+        title=f"Rejected Field: {field_label}",
         description=(
-            f"'{field_label}' alani admin tarafindan reddedildi. "
-            f"Sebep: {reason} "
-            "Lutfen degeri duzeltip tekrar gonderin."
+            f"'{field_label}' field was rejected by admin. "
+            f"Reason: {reason} "
+            "Please correct the value and resubmit."
         ),
         related_field_id=field.id,
     )

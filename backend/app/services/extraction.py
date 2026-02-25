@@ -49,7 +49,7 @@ def extract_text_from_pdf(file_bytes: bytes) -> list[PageText]:
         doc.close()
         raise ExtractionError(
             "encrypted_pdf",
-            "PDF dosyasi sifre korumali. Lutfen sifreyi kaldirip tekrar yukleyin.",
+            "PDF file is password-protected. Please remove the password and re-upload.",
         )
 
     pages: list[PageText] = []
@@ -122,7 +122,7 @@ def extract_text_from_image(file_bytes: bytes) -> list[PageText]:
         if not text:
             raise ExtractionError(
                 "low_quality_image",
-                "Goruntu kalitesi cok dusuk. Lutfen daha net bir goruntu yukleyin.",
+                "Image quality is too low. Please upload a clearer image.",
             )
 
         return [
@@ -138,7 +138,7 @@ def extract_text_from_image(file_bytes: bytes) -> list[PageText]:
     except Exception as exc:
         raise ExtractionError(
             "ocr_failed",
-            "Metin cikarilmasi basarisiz oldu. Lutfen daha net bir goruntu yukleyin.",
+            "Text extraction failed. Please upload a clearer image.",
         ) from exc
 
 
@@ -156,5 +156,5 @@ def extract_text(file_bytes: bytes, mime_type: str) -> list[PageText]:
     else:
         raise ExtractionError(
             "unsupported_file",
-            "Dosya icerigi beklenen formata uymuyor.",
+            "File content does not match the expected format.",
         )

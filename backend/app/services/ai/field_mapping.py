@@ -52,38 +52,38 @@ DOC_TYPE_FIELDS: dict[str, list[str]] = {
     ],
 }
 
-# --- Turkish UI labels for each canonical key ---
+# --- UI labels for each canonical key ---
 FIELD_LABELS: dict[str, str] = {
-    "shipment.invoice_number": "Fatura Numarasi",
-    "shipment.invoice_date": "Fatura Tarihi",
-    "shipment.total_quantity": "Toplam Miktar",
-    "shipment.unit": "Birim",
-    "customs.hs_code": "HS Kodu",
-    "product.sku": "Urun Kodu (SKU)",
-    "product.name": "Urun Adi",
-    "factory.country": "Fabrika Ulkesi",
-    "factory.name": "Fabrika Adi",
-    "shipment.packing_list_number": "Ambalaj Listesi No",
-    "certificate.oekotex.number": "OEKO-TEX Sertifika No",
-    "certificate.oekotex.valid_until": "Gecerlilik Tarihi",
-    "certificate.issuer": "Sertifika Veren Kurum",
-    "test_report.lab_name": "Laboratuvar Adi",
-    "test_report.report_number": "Rapor Numarasi",
-    "test_report.report_date": "Rapor Tarihi",
-    "test_report.result_pass_fail": "Sonuc (Gecti/Kaldi)",
-    "material.composition.cotton_pct": "Pamuk Orani (%)",
-    "material.composition.elastane_pct": "Elastan Orani (%)",
-    "material.composition.total_pct": "Toplam Oran (%)",
-    "sds.exists": "SDS Mevcut",
-    "chemical.restricted_substances_pass_fail": "Kisitli Madde Sonucu",
-    "batch.id": "Parti Numarasi",
-    "batch.production_date_from": "Uretim Baslangic",
-    "batch.production_date_to": "Uretim Bitis",
+    "shipment.invoice_number": "Invoice No",
+    "shipment.invoice_date": "Invoice Date",
+    "shipment.total_quantity": "Total Quantity",
+    "shipment.unit": "Unit",
+    "customs.hs_code": "HS Code",
+    "product.sku": "Product Code (SKU)",
+    "product.name": "Product Name",
+    "factory.country": "Factory Country",
+    "factory.name": "Factory Name",
+    "shipment.packing_list_number": "Packing List No",
+    "certificate.oekotex.number": "OEKO-TEX Certificate No",
+    "certificate.oekotex.valid_until": "Validity Date",
+    "certificate.issuer": "Issuing Body",
+    "test_report.lab_name": "Laboratory Name",
+    "test_report.report_number": "Report Number",
+    "test_report.report_date": "Report Date",
+    "test_report.result_pass_fail": "Result (Pass/Fail)",
+    "material.composition.cotton_pct": "Cotton Ratio (%)",
+    "material.composition.elastane_pct": "Elastane Ratio (%)",
+    "material.composition.total_pct": "Total Composition (%)",
+    "sds.exists": "SDS Available",
+    "chemical.restricted_substances_pass_fail": "Restricted Substance Result",
+    "batch.id": "Batch Number",
+    "batch.production_date_from": "Production Start",
+    "batch.production_date_to": "Production End",
 }
 
 # --- Category grouping for UI accordion ---
 FIELD_CATEGORIES: dict[str, list[str]] = {
-    "Kimlik": [
+    "Identity": [
         "shipment.invoice_number",
         "shipment.invoice_date",
         "shipment.packing_list_number",
@@ -91,14 +91,14 @@ FIELD_CATEGORIES: dict[str, list[str]] = {
         "product.name",
         "batch.id",
     ],
-    "Malzeme": [
+    "Material": [
         "material.composition.cotton_pct",
         "material.composition.elastane_pct",
         "material.composition.total_pct",
         "shipment.total_quantity",
         "shipment.unit",
     ],
-    "Sertifika": [
+    "Certificate": [
         "certificate.oekotex.number",
         "certificate.oekotex.valid_until",
         "certificate.issuer",
@@ -113,15 +113,15 @@ FIELD_CATEGORIES: dict[str, list[str]] = {
         "sds.exists",
         "chemical.restricted_substances_pass_fail",
     ],
-    "Fabrika": [
+    "Factory": [
         "factory.name",
         "factory.country",
     ],
-    "Uretim": [
+    "Production": [
         "batch.production_date_from",
         "batch.production_date_to",
     ],
-    "Gumruk": [
+    "Customs": [
         "customs.hs_code",
     ],
 }

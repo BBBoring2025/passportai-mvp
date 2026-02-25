@@ -541,11 +541,11 @@ def main():
             type="missing_field",
             severity="high",
             status="open",
-            title=f"Reddedilen Alan: {field_label}",
+            title=f"Rejected Field: {field_label}",
             description=(
-                f"'{field_label}' alani admin tarafindan reddedildi. "
-                f"Sebep: Test rejection. "
-                "Lutfen degeri duzeltip tekrar gonderin."
+                f"'{field_label}' field was rejected by admin. "
+                f"Reason: Test rejection. "
+                "Please correct the value and resubmit."
             ),
             related_field_id=f4.id,
         )

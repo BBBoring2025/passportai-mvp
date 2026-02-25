@@ -18,11 +18,11 @@ REQUIRED_DOC_TYPES = [
 ]
 
 DOC_TYPE_LABELS: dict[str, str] = {
-    "invoice": "Ticari Fatura",
-    "packing_list": "Ambalaj Listesi",
-    "certificate": "Sertifika (OEKO-TEX)",
-    "test_report": "Test Raporu",
-    "sds": "Guvenlik Bilgi Formu (SDS)",
+    "invoice": "Commercial Invoice",
+    "packing_list": "Packing List",
+    "certificate": "Certificate (OEKO-TEX)",
+    "test_report": "Test Report",
+    "sds": "Safety Data Sheet (SDS)",
 }
 
 
@@ -52,7 +52,7 @@ class MissingCriticalDocs(BaseRule):
                         severity="high",
                         status="pass",
                         message=(
-                            "Tum zorunlu belge turleri mevcut "
+                            "All required document types present "
                             f"({len(REQUIRED_DOC_TYPES)}"
                             f"/{len(REQUIRED_DOC_TYPES)})."
                         ),
@@ -67,11 +67,11 @@ class MissingCriticalDocs(BaseRule):
             ChecklistEntry(
                 type="missing_document",
                 severity="high",
-                title=f"{DOC_TYPE_LABELS.get(dt, dt)} eksik",
+                title=f"{DOC_TYPE_LABELS.get(dt, dt)} missing",
                 description=(
-                    f"{DOC_TYPE_LABELS.get(dt, dt)} belgesi "
-                    "bu pakette bulunamadi. "
-                    "Lutfen ilgili belgeyi yukleyin."
+                    f"{DOC_TYPE_LABELS.get(dt, dt)} document "
+                    "was not found in this package. "
+                    "Please upload the relevant document."
                 ),
             )
             for dt in missing
@@ -84,7 +84,7 @@ class MissingCriticalDocs(BaseRule):
                     severity="high",
                     status="fail",
                     message=(
-                        "Eksik belge(ler): "
+                        "Missing document(s): "
                         f"{', '.join(missing_labels)}."
                     ),
                 )

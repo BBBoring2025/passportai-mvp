@@ -56,8 +56,8 @@ def upload_document(
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=(
-                "Dosya icerigi beklenen formata uymuyor."
-                " Lutfen gecerli bir PDF, JPG veya PNG dosyasi yukleyin."
+                "File content does not match the expected format."
+                " Please upload a valid PDF, JPG, or PNG file."
             ),
         )
 

@@ -26,19 +26,19 @@ from app.services.storage import get_file_bytes
 
 logger = logging.getLogger(__name__)
 
-# ── Turkish error messages ──────────────────────────────────────────────────────
+# ── Error messages ──────────────────────────────────────────────────────
 ERROR_MESSAGES: dict[str, str] = {
-    "encrypted_pdf": "PDF dosyasi sifre korumali. Lutfen sifreyi kaldirip tekrar yukleyin.",
+    "encrypted_pdf": "PDF file is password-protected. Please remove the password and re-upload.",
     "low_quality_image": (
-        "Goruntu kalitesi cok dusuk. Lutfen daha net bir goruntu yukleyin."
+        "Image quality is too low. Please upload a clearer image."
     ),
     "ocr_failed": (
-        "Metin cikarilmasi basarisiz oldu. Lutfen daha net bir goruntu yukleyin."
+        "Text extraction failed. Please upload a clearer image."
     ),
-    "unsupported_file": "Dosya icerigi beklenen formata uymuyor.",
-    "extraction_timeout": "Islem zaman asimina ugradi. Lutfen tekrar deneyin.",
+    "unsupported_file": "File content does not match the expected format.",
+    "extraction_timeout": "Processing timed out. Please try again.",
     "extraction_failed": (
-        "Veri cikarma basarisiz oldu. Lutfen tekrar deneyin."
+        "Data extraction failed. Please try again."
     ),
 }
 
@@ -248,7 +248,7 @@ def run_extraction(
     if not pages:
         return _set_error(
             db, document, actor_id, "extraction_failed",
-            "Dokumanda cikarilmis sayfa bulunamadi.",
+            "No extracted pages found in the document.",
         )
 
     page_tuples = [

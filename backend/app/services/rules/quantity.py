@@ -53,9 +53,9 @@ class QtyMismatch(BaseRule):
                         severity="medium",
                         status="warn",
                         message=(
-                            "Miktar karsilastirmasi yapilamiyor: "
-                            "fatura veya ambalaj listesinde "
-                            "miktar alani eksik."
+                            "Quantity comparison not possible: "
+                            "quantity field missing in invoice "
+                            "or packing list."
                         ),
                     )
                 ]
@@ -76,9 +76,9 @@ class QtyMismatch(BaseRule):
                         severity="high",
                         status="fail",
                         message=(
-                            "Miktar degerleri sayisal degil: "
-                            f"fatura='{inv_field.value}', "
-                            f"ambalaj='{pack_field.value}'."
+                            "Quantity values are not numeric: "
+                            f"invoice='{inv_field.value}', "
+                            f"packing list='{pack_field.value}'."
                         ),
                         related_field_ids=field_ids,
                     )
@@ -93,8 +93,8 @@ class QtyMismatch(BaseRule):
                         severity="high",
                         status="pass",
                         message=(
-                            f"Miktar eslesiyor: {inv_qty:.0f} "
-                            "(fatura = ambalaj listesi)."
+                            f"Quantity matches: {inv_qty:.0f} "
+                            "(invoice = packing list)."
                         ),
                         related_field_ids=field_ids,
                     )
@@ -108,7 +108,7 @@ class QtyMismatch(BaseRule):
                     severity="high",
                     status="fail",
                     message=(
-                        "Fatura ve ceki listesi miktari uyusmuyor "
+                        "Invoice and packing list quantities do not match "
                         f"(invoice={inv_qty:.0f}, "
                         f"packing={pack_qty:.0f})"
                     ),
@@ -119,11 +119,11 @@ class QtyMismatch(BaseRule):
                 ChecklistEntry(
                     type="conflict_detected",
                     severity="high",
-                    title="Miktar Uyumsuzlugu",
+                    title="Quantity Mismatch",
                     description=(
-                        f"Faturadaki miktar ({inv_qty:.0f}) ile "
-                        "ambalaj listesindeki miktar "
-                        f"({pack_qty:.0f}) eslemiyor."
+                        f"Invoice quantity ({inv_qty:.0f}) does not match "
+                        "packing list quantity "
+                        f"({pack_qty:.0f})."
                     ),
                     related_field_id=str(inv_field.id),
                 )

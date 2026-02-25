@@ -45,7 +45,7 @@ class CertificateValidity(BaseRule):
                         severity="medium",
                         status="warn",
                         message=(
-                            "Sertifika gecerlilik tarihi bulunamadi."
+                            "Certificate validity date not found."
                         ),
                     )
                 ]
@@ -73,7 +73,7 @@ class CertificateValidity(BaseRule):
                         severity="high",
                         status="fail",
                         message=(
-                            "Sertifika tarihi okunamiyor: "
+                            "Certificate date unreadable: "
                             f"'{field.value}'."
                         ),
                         related_field_ids=field_ids,
@@ -90,8 +90,8 @@ class CertificateValidity(BaseRule):
                         severity="high",
                         status="pass",
                         message=(
-                            f"Sertifika gecerli: {valid_until} "
-                            f"(bugun: {today})."
+                            f"Certificate valid: {valid_until} "
+                            f"(today: {today})."
                         ),
                         related_field_ids=field_ids,
                     )
@@ -105,7 +105,7 @@ class CertificateValidity(BaseRule):
                     severity="high",
                     status="fail",
                     message=(
-                        "Sertifika suresi dolmus "
+                        "Certificate expired "
                         f"({VALIDITY_KEY}, {valid_until})"
                     ),
                     related_field_ids=field_ids,
@@ -115,11 +115,10 @@ class CertificateValidity(BaseRule):
                 ChecklistEntry(
                     type="expired_document",
                     severity="high",
-                    title="Suresi Dolmus Sertifika",
+                    title="Expired Certificate",
                     description=(
-                        f"OEKO-TEX sertifikasi {valid_until} "
-                        "tarihinde sona ermis. "
-                        "Guncel sertifika yukleyin."
+                        f"OEKO-TEX certificate expired on {valid_until}. "
+                        "Please upload an up-to-date certificate."
                     ),
                     related_field_id=str(field.id),
                 )

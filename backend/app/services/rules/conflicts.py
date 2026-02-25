@@ -50,7 +50,7 @@ class ConflictDetection(BaseRule):
                         severity="high",
                         status="fail",
                         message=(
-                            f"{key} icin farkli degerler "
+                            f"Different values for {key} "
                             f"({val_str})"
                         ),
                         related_field_ids=field_ids,
@@ -65,12 +65,12 @@ class ConflictDetection(BaseRule):
                     ChecklistEntry(
                         type="conflict_detected",
                         severity="high",
-                        title=f"Celiskili Alan: {key}",
+                        title=f"Conflicting Field: {key}",
                         description=(
-                            f"'{key}' alani farkli belgelerde "
-                            "farkli degerler iceriyor: "
+                            f"'{key}' field contains different values "
+                            "across documents: "
                             f"{val_str}. "
-                            "Dogru degeri secin."
+                            "Please select the correct value."
                         ),
                         related_field_id=str(field_list[0].id),
                     )
@@ -84,8 +84,8 @@ class ConflictDetection(BaseRule):
                         severity="medium",
                         status="pass",
                         message=(
-                            "Belgeler arasi celiskili deger "
-                            "bulunamadi."
+                            "No conflicting values found "
+                            "across documents."
                         ),
                     )
                 ]

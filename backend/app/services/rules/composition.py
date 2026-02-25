@@ -45,7 +45,7 @@ class CompositionSum100(BaseRule):
                         severity="medium",
                         status="warn",
                         message=(
-                            "Malzeme kompozisyon alanlari bulunamadi."
+                            "Material composition fields not found."
                         ),
                     )
                 ]
@@ -90,11 +90,11 @@ class CompositionSum100(BaseRule):
             if 99.0 <= total <= 101.0:
                 any_pass = True
                 results_detail.append(
-                    f"doc {doc_id[:8]}: {total:.1f}% (gecerli)"
+                    f"doc {doc_id[:8]}: {total:.1f}% (valid)"
                 )
             else:
                 results_detail.append(
-                    f"doc {doc_id[:8]}: {total:.1f}% (hatali)"
+                    f"doc {doc_id[:8]}: {total:.1f}% (invalid)"
                 )
 
         if any_pass:
@@ -105,7 +105,7 @@ class CompositionSum100(BaseRule):
                         severity="high",
                         status="pass",
                         message=(
-                            "Malzeme kompozisyonu gecerli "
+                            "Material composition valid "
                             f"({'; '.join(results_detail)})."
                         ),
                         related_field_ids=all_field_ids,
@@ -121,7 +121,7 @@ class CompositionSum100(BaseRule):
                     severity="high",
                     status="fail",
                     message=(
-                        "Kompozisyon toplami tutmuyor "
+                        "Composition total mismatch "
                         f"({'; '.join(results_detail)})"
                     ),
                     related_field_ids=all_field_ids,
@@ -131,11 +131,11 @@ class CompositionSum100(BaseRule):
                 ChecklistEntry(
                     type="composition_error",
                     severity="high",
-                    title="Kompozisyon Toplami Hatasi",
+                    title="Composition Total Error",
                     description=(
-                        "Malzeme yuzdeleri toplami gecersiz. "
-                        "Beklenen aralik: %99-101. "
-                        "Lutfen degerleri kontrol edin."
+                        "Material percentage total is invalid. "
+                        "Expected range: 99-101%. "
+                        "Please check the values."
                     ),
                     related_field_id=(
                         all_field_ids[0]
