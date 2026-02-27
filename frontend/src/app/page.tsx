@@ -209,7 +209,7 @@ export default function Home() {
           Watch a 2-minute walkthrough of the full buyer–supplier–admin workflow.
         </p>
         <a
-          href="https://youtu.be/u14T2_ferbs"
+          href="https://youtu.be/ieClIyi6VNE"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
