@@ -202,6 +202,83 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Demo Video */}
+      <section className="max-w-6xl mx-auto px-6 py-24 text-center">
+        <h2 className="text-3xl font-bold">See it in action</h2>
+        <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+          Watch a 2-minute walkthrough of the full buyer–supplier–admin workflow.
+        </p>
+        <a
+          href="https://youtu.be/u14T2_ferbs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+        >
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          Watch Demo Video
+        </a>
+      </section>
+
+      {/* Try the Demo */}
+      <section className="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-6xl mx-auto px-6 py-24">
+          <h2 className="text-3xl font-bold text-center">Try the demo</h2>
+          <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            Sign in with any of the accounts below to explore each role.
+            All accounts use the same password.
+          </p>
+          <div className="mt-12 grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            {[
+              {
+                role: "Buyer",
+                email: "buyer@nordic.com",
+                color: "blue",
+              },
+              {
+                role: "Supplier",
+                email: "info@yildiz.com",
+                color: "green",
+              },
+              {
+                role: "Admin",
+                email: "admin@passportai.com",
+                color: "purple",
+              },
+            ].map((account) => (
+              <div
+                key={account.role}
+                className="p-5 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 text-center"
+              >
+                <div className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  {account.role}
+                </div>
+                <div className="mt-2 font-mono text-sm font-medium">
+                  {account.email}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              Password for all accounts:{" "}
+            </span>
+            <code className="px-2 py-1 rounded bg-gray-200 dark:bg-gray-800 text-sm font-mono font-medium">
+              demo1234
+            </code>
+          </div>
+          <div className="mt-8 text-center">
+            <Link
+              href="/login"
+              className="px-6 py-3 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              Sign In to Try It
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-24 text-center">
         <h2 className="text-3xl font-bold">
