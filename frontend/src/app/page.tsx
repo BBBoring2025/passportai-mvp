@@ -51,8 +51,8 @@ export default function Home() {
       <section className="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "90%", label: "Faster document processing" },
-            { value: "50+", label: "Data fields extracted per product" },
+            { value: "Minutes", label: "Not weeks — from upload to passport" },
+            { value: "40+", label: "Data fields extracted per product" },
             { value: "3", label: "User roles supported" },
             { value: "24/7", label: "Automated compliance checks" },
           ].map((stat) => (
@@ -243,7 +243,7 @@ export default function Home() {
               },
               {
                 role: "Admin",
-                email: "admin@passportai.com",
+                email: "admin@nordic.com",
                 color: "purple",
               },
             ].map((account) => (
