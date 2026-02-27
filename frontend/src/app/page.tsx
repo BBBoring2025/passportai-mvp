@@ -24,12 +24,12 @@ export default function Home() {
           EU Digital Product Passport — Ready
         </div>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-3xl mx-auto">
-          Compliance automation for textile supply chains
+          Data operations for textile supply chains
         </h1>
         <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
           PassportAI extracts, validates, and organizes the documents you need
-          for Digital Product Passports — so your team can stop chasing
-          spreadsheets and start shipping compliant products.
+          for DPP readiness — so your team can stop chasing
+          spreadsheets and start shipping with auditable evidence.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
@@ -51,10 +51,10 @@ export default function Home() {
       <section className="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "Minutes", label: "Not weeks — from upload to passport" },
+            { value: "Minutes", label: "Not weeks — from upload to audit-ready data" },
             { value: "40+", label: "Data fields extracted per product" },
             { value: "3", label: "User roles supported" },
-            { value: "24/7", label: "Automated compliance checks" },
+            { value: "24/7", label: "Automated readiness checks" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="text-3xl font-bold text-blue-600">
@@ -71,11 +71,11 @@ export default function Home() {
       {/* Features */}
       <section className="max-w-6xl mx-auto px-6 py-24">
         <h2 className="text-3xl font-bold text-center">
-          Everything you need for DPP compliance
+          Everything you need for DPP readiness
         </h2>
         <p className="mt-4 text-center text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-          From document intake to regulatory submission — one platform for
-          buyers, suppliers, and compliance teams.
+          From document intake to audit-ready output — one platform for
+          buyers, suppliers, and data teams.
         </p>
         <div className="mt-16 grid md:grid-cols-3 gap-8">
           {[
@@ -105,7 +105,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
                 </svg>
               ),
-              title: "Compliance Validation",
+              title: "Readiness Validation",
               description:
                 "Real-time checks against EU DPP requirements. See exactly what's missing before submission.",
             },
@@ -185,7 +185,7 @@ export default function Home() {
                 step: "3",
                 role: "Buyer",
                 description:
-                  "Monitor supplier readiness scores on your dashboard. Track compliance progress across your entire supply chain.",
+                  "Monitor supplier readiness scores on your dashboard. Track DPP readiness across your entire supply chain.",
               },
             ].map((item) => (
               <div key={item.step} className="text-center">
@@ -282,10 +282,10 @@ export default function Home() {
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 py-24 text-center">
         <h2 className="text-3xl font-bold">
-          Ready to simplify DPP compliance?
+          Ready to simplify DPP readiness?
         </h2>
         <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-          Sign in to start uploading documents, tracking compliance, and
+          Sign in to start uploading documents, tracking readiness, and
           collaborating with your supply chain partners.
         </p>
         <Link
