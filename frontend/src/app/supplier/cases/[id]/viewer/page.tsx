@@ -233,14 +233,7 @@ export default function DocumentViewerPage() {
             )}
           </div>
 
-          {/* Extraction method indicator */}
-          {pageData && (
-            <div className="px-4 py-2 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-              <span className="text-xs text-gray-400">
-                Extraction method: {pageData.extraction_method}
-              </span>
-            </div>
-          )}
+          {/* Extraction method indicator — hidden in production */}
         </div>
 
         {/* Right panel — Extracted fields */}

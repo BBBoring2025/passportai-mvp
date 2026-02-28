@@ -6,9 +6,14 @@ export default function Home() {
       {/* Navbar */}
       <nav className="border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="text-xl font-bold tracking-tight">
-            Passport<span className="text-blue-600">AI</span>
-          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-xl font-bold tracking-tight">
+              Passport<span className="text-blue-600">AI</span>
+            </span>
+            <span className="text-[10px] text-gray-400 dark:text-gray-500 font-medium tracking-wide">
+              by SalesShield
+            </span>
+          </div>
           <Link
             href="/login"
             className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -51,7 +56,7 @@ export default function Home() {
       <section className="border-y border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { value: "Minutes", label: "Not weeks — from upload to audit-ready data" },
+            { value: "Minutes", label: "To extract & evidence-link supplier documents" },
             { value: "40+", label: "Data fields extracted per product" },
             { value: "3", label: "User roles supported" },
             { value: "24/7", label: "Automated readiness checks" },
@@ -206,7 +211,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 py-24 text-center">
         <h2 className="text-3xl font-bold">See it in action</h2>
         <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-          Watch a 2-minute walkthrough of the full buyer–supplier–admin workflow.
+          Watch a 1-minute walkthrough of the full buyer–supplier–admin workflow.
         </p>
         <a
           href="https://youtu.be/ieClIyi6VNE"
@@ -300,7 +305,8 @@ export default function Home() {
       <footer className="border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-500">
           <span>
-            &copy; {new Date().getFullYear()} PassportAI. All rights reserved.
+            &copy; {new Date().getFullYear()} PassportAI by{" "}
+            <a href="https://salesshield.io" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 dark:hover:text-gray-300 underline underline-offset-2">SalesShield</a>. All rights reserved.
           </span>
           <span>DPP Operations Module for Textile Supply Chains</span>
         </div>

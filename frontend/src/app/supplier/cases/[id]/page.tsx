@@ -462,7 +462,7 @@ export default function CaseDetailPage() {
         {(checklistItems.length > 0 || hasExtractedDocs) && (
           <div className="mt-8">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-              Checklist ({checklistItems.filter((i) => i.status !== "done").length} open)
+              Checklist ({checklistItems.filter((i) => i.status !== "done").length} flagged)
             </h3>
             <ChecklistSection
               items={checklistItems}

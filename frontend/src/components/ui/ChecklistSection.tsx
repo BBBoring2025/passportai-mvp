@@ -109,7 +109,7 @@ export default function ChecklistSection({
           >
             {updating === item.id
               ? "..."
-              : "Completed"}
+              : "Resolve"}
           </button>
         </div>
       ))}
