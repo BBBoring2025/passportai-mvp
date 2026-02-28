@@ -145,7 +145,7 @@ export default function AdminReviewQueuePage() {
           <div>
             <h1 className="text-2xl font-bold">L2 Approval Queue</h1>
             <p className="text-sm text-gray-500 mt-1">
-              {fields.length} field(s) pending review
+              {fields.length} fields pending review
             </p>
           </div>
           <button

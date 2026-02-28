@@ -34,6 +34,9 @@ const STATUS_COLORS: Record<string, string> = {
     "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
   missing:
     "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400",
+  // Supplier onboarding
+  no_case:
+    "bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400",
   // Checklist statuses
   open: "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
   done: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
@@ -63,6 +66,8 @@ const STATUS_LABELS: Record<string, string> = {
   conflict: "Conflicting",
   rejected: "Rejected",
   missing: "Missing",
+  // Supplier onboarding
+  no_case: "Not Onboarded",
   // Checklist statuses
   open: "Open",
   done: "Completed",
